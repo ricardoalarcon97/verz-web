@@ -93,6 +93,8 @@
             margin-bottom: 6px;
             color: #333333;
             letter-spacing: -0.3px;
+            cursor: pointer;
+            transition: color 0.15s ease, transform 0.15s ease;
         }
 
         .left-content h2 {
@@ -102,11 +104,13 @@
             letter-spacing: -1px;
             cursor: pointer;
             display: inline-block;
-            transition: opacity 0.2s ease;
+            transition: color 0.15s ease, transform 0.15s ease;
         }
 
+        .left-content p:hover,
         .left-content h2:hover {
-            opacity: 0.7;
+            color: #000000;
+            transform: translateY(-1px);
         }
 
         /* Right Column */
