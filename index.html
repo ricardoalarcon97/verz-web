@@ -21,7 +21,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            padding: 40px 8vw;
+            padding: 20px 8vw 40px;
             overflow-x: hidden;
         }
 
@@ -47,18 +47,29 @@
         .delay-3 { animation-delay: 0.3s; }
         .delay-4 { animation-delay: 0.4s; }
 
-        /* Header */
+        /* Header - estilo Apple: más arriba, logo e icono más pequeños */
         header {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             margin-bottom: auto;
+            padding-top: 4px;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+        }
+
+        .logo-container img:first-child {
+            width: 18px;
+            height: 18px;
+        }
+
+        .logo-container img:last-child {
+            height: 18px;
+            width: auto;
         }
 
         /* Main Content Grid */
@@ -77,8 +88,8 @@
         .left-content p {
             font-size: 22px;
             font-weight: 400;
-            line-height: 1.6;
-            margin-bottom: 16px;
+            line-height: 1.5;
+            margin-bottom: 6px;
             color: #333333;
             letter-spacing: -0.3px;
         }
@@ -86,7 +97,7 @@
         .left-content h2 {
             font-size: 36px;
             font-weight: 700;
-            margin-top: 40px;
+            margin-top: 14px;
             letter-spacing: -1px;
             cursor: pointer;
             display: inline-block;
@@ -207,8 +218,8 @@
 
     <header class="animate">
         <div class="logo-container">
-            <img src="Verz_Icon_SVG.svg" alt="Verz Icon" width="28" height="28">
-            <img src="Verz_Logo_SVG.svg" alt="Verz Logo" height="24">
+            <img src="Verz_Icon_SVG.svg" alt="Verz Icon">
+            <img src="Verz_Logo_SVG.svg" alt="Verz Logo">
         </div>
     </header>
 
