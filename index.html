@@ -257,7 +257,8 @@
         const SUPABASE_URL = "https://kwyjinqkdlkicoewkego.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt3eWppbnFrZGxraWNvZXdrZWdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzNDAwMDIsImV4cCI6MjA4MzkxNjAwMn0.wpZoU2w-mmFB99N23epW4-mOKUmOmRsTv_x_S0ZKaqI";
 
-        const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Con el build UMD, Supabase expone una variable global `supabase`
+        const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         const form = document.getElementById("signup-form");
         const emailInput = document.getElementById("signup-email");
