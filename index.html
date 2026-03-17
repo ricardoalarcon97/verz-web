@@ -236,10 +236,11 @@
             <h1>Be part of the story.</h1>
             <p>Create account</p>
             
-            <form class="form-group" onsubmit="event.preventDefault();">
-                <input type="email" placeholder="Email" required aria-label="Email address">
-                <button type="button">Go</button>
+            <form class="form-group" id="signup-form">
+                <input type="email" id="signup-email" placeholder="Email" required aria-label="Email address">
+                <button type="submit" id="signup-button">Go</button>
             </form>
+            <p id="signup-message" style="font-size: 13px; color: #8e8e93; margin-top: 8px; min-height: 18px;"></p>
         </div>
     </main>
 
@@ -249,6 +250,45 @@
         <a href="#">EULA</a>
         <span>Lat Ware Co.</span>
     </footer>
+    
+    <!-- Supabase Auth -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script>
+        const SUPABASE_URL = "https://kwyjinqkdlkicoewkego.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt3eWppbnFrZGxraWNvZXdrZWdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgzNDAwMDIsImV4cCI6MjA4MzkxNjAwMn0.wpZoU2w-mmFB99N23epW4-mOKUmOmRsTv_x_S0ZKaqI";
 
+        const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const form = document.getElementById("signup-form");
+        const emailInput = document.getElementById("signup-email");
+        const button = document.getElementById("signup-button");
+        const messageEl = document.getElementById("signup-message");
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const email = emailInput.value.trim();
+            if (!email) return;
+
+            button.disabled = true;
+            button.textContent = "Sending...";
+            messageEl.style.color = "#8e8e93";
+            messageEl.textContent = "Sending magic link...";
+
+            const { error } = await client.auth.signUp({ email });
+
+            if (error) {
+                messageEl.style.color = "#d0021b";
+                messageEl.textContent = error.message || "Something went wrong. Please try again.";
+            } else {
+                messageEl.style.color = "#007aff";
+                messageEl.textContent = "Check your email to complete sign up.";
+                emailInput.value = "";
+            }
+
+            button.disabled = false;
+            button.textContent = "Go";
+        });
+    </script>
 </body>
 </html>
