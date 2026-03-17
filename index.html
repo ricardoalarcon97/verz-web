@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verz - Be part of the story</title>
+    <style>
+        /* CSS Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 40px 8vw;
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* Header */
+        header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Main Content Grid */
+        main {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 100px;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            width: 100%;
+            padding: 40px 0;
+        }
+
+        /* Left Column */
+        .left-content p {
+            font-size: 22px;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            color: #333333;
+            letter-spacing: -0.3px;
+        }
+
+        .left-content h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-top: 40px;
+            letter-spacing: -1px;
+            cursor: pointer;
+            display: inline-block;
+            transition: opacity 0.2s ease;
+        }
+
+        .left-content h2:hover {
+            opacity: 0.7;
+        }
+
+        /* Right Column */
+        .right-content {
+            max-width: 380px;
+        }
+
+        .right-content h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .right-content p {
+            font-size: 16px;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #E5E5EA; /* Borde más suave y neutro */
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            color: #1a1a1a;
+            background-color: #ffffff;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            outline: none;
+        }
+
+        input[type="email"]::placeholder {
+            color: #999999;
+        }
+
+        input[type="email"]:focus {
+            border-color: #1a1a1a;
+            box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            border-radius: 24px;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #333333;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        /* Footer */
+        footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-top: auto;
+            padding-top: 40px;
+        }
+
+        footer a, footer span {
+            font-size: 13px;
+            color: #8e8e93;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: #1a1a1a;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            .right-content {
+                max-width: 100%;
+            }
+            body {
+                padding: 30px 5vw;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="animate">
+        <div class="logo-container">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="16" r="14" stroke="#d4145a" stroke-width="1.5"/>
+                <circle cx="16" cy="16" r="10" stroke="#d4145a" stroke-width="1.5"/>
+                <circle cx="16" cy="16" r="5" fill="#d4145a"/>
+            </svg>
+            <svg height="24" viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="0" y="26" font-family="-apple-system, sans-serif" font-weight="900" font-size="28" fill="#1a1a1a" letter-spacing="-1.5">verz</text>
+            </svg>
+        </div>
+    </header>
+
+    <main>
+        <div class="left-content">
+            <p class="animate delay-1">Monitor worldwide news as fast as you can imagine</p>
+            <p class="animate delay-2">Follow the story from the very first rumors</p>
+            <p class="animate delay-3">Track the updates and news status</p>
+            <h2 class="animate delay-4">And there's more. Check it out ></h2>
+        </div>
+        
+        <div class="right-content animate delay-3">
+            <h1>Be part of the story.</h1>
+            <p>Create account</p>
+            
+            <form class="form-group" onsubmit="event.preventDefault();">
+                <input type="email" placeholder="Email" required aria-label="Email address">
+                <button type="button">Go</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="animate delay-4">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">EULA</a>
+        <span>Lat Ware Co.</span>
+    </footer>
+
+</body>
+</html> 
