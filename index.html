@@ -238,6 +238,14 @@
             
             <form class="form-group" id="signup-form">
                 <input type="email" id="signup-email" placeholder="Email" required aria-label="Email address">
+                <input
+                    type="password"
+                    id="signup-password"
+                    placeholder="Password (min. 12 chars, aA1!)"
+                    required
+                    aria-label="Password"
+                    minlength="12"
+                >
                 <button type="submit" id="signup-button">Go</button>
             </form>
             <p id="signup-message" style="font-size: 13px; color: #8e8e93; margin-top: 8px; min-height: 18px;"></p>
@@ -263,6 +271,7 @@
 
         const form = document.getElementById("signup-form");
         const emailInput = document.getElementById("signup-email");
+        const passwordInput = document.getElementById("signup-password");
         const button = document.getElementById("signup-button");
         const messageEl = document.getElementById("signup-message");
 
@@ -270,22 +279,36 @@
             event.preventDefault();
 
             const email = emailInput.value.trim();
-            if (!email) return;
+            const password = passwordInput.value;
+
+            // Requisitos mínimos: 12+ caracteres, minúsculas, mayúsculas, dígitos y símbolos
+            const hasMinLength = password.length >= 12;
+            const hasLower = /[a-z]/.test(password);
+            const hasUpper = /[A-Z]/.test(password);
+            const hasDigit = /\d/.test(password);
+            const hasSymbol = /[^A-Za-z0-9]/.test(password);
+
+            if (!email || !password || !hasMinLength || !hasLower || !hasUpper || !hasDigit || !hasSymbol) {
+                messageEl.style.color = "#d0021b";
+                messageEl.textContent = "Password must be at least 12 characters and include lowercase, uppercase, digits and symbols.";
+                return;
+            }
 
             button.disabled = true;
-            button.textContent = "Sending...";
+            button.textContent = "Creating...";
             messageEl.style.color = "#8e8e93";
-            messageEl.textContent = "Sending magic link...";
+            messageEl.textContent = "Creating your account...";
 
-            const { error } = await client.auth.signUp({ email });
+            const { error } = await client.auth.signUp({ email, password });
 
             if (error) {
                 messageEl.style.color = "#d0021b";
                 messageEl.textContent = error.message || "Something went wrong. Please try again.";
             } else {
                 messageEl.style.color = "#007aff";
-                messageEl.textContent = "Check your email to complete sign up.";
+                messageEl.textContent = "Account created. Check your email to confirm.";
                 emailInput.value = "";
+                passwordInput.value = "";
             }
 
             button.disabled = false;
